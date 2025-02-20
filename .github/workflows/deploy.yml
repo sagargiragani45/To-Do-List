@@ -1,0 +1,44 @@
+name: Deploy To-Do List App
+
+on:
+  push:
+    branches: [ main ]  # Runs the workflow when code is pushed to 'main' branch
+  workflow_dispatch:    # Allows manual trigger
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22  # Use the same Node.js version as locally
+
+      # Step 3: Install dependencies (Backend)
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
+
+      # Step 4: Run Backend Server
+      - name: Start backend server
+        run: |
+          cd backend
+          nohup node server.js &  # Run the server in the background
+
+      # Step 5: Deploy Frontend
+      - name: Deploy frontend
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend
+          path: frontend/
+
+      # Step 6: Success message
+      - name: Deployment success
+        run: echo "✅ To-Do List app successfully deployed!"
