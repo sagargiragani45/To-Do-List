@@ -1,0 +1,9 @@
+```css
+body { font-family: Arial, sans-serif; background: #f4f4f4; }
+.container { width: 400px; margin: 50px auto; text-align: center; }
+input, button { margin: 5px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+button { cursor: pointer; background: #007bff; color: white; border: none; }
+button:hover { background: #0056b3; }
+ul { list-style: none; padding: 0; }
+li { display: flex; justify-content: space-between; padding: 10px; border: 1px solid #ddd; margin: 5px 0; border-radius: 5px; }
+```
